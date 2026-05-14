@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tapering vs. Cold Turkey - Slope Blog</title>
+    <meta
+      name="description"
+      content="A responsible guide to tapering vs. quitting cold turkey, why some withdrawal requires medical support, and where Slope fits as a non-medical habit support tool."
+    >
+    <style>
+      :root {
+        --snow: #ffffff;
+        --snow-cool: #fafafd;
+        --snow-warm: #f8f6f1;
+        --ink: #000000;
+        --ink-72: rgba(0, 0, 0, 0.72);
+        --ink-56: rgba(0, 0, 0, 0.56);
+        --ink-40: rgba(0, 0, 0, 0.40);
+        --ink-18: rgba(0, 0, 0, 0.18);
+        --ink-08: rgba(0, 0, 0, 0.08);
+        --ui: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --serif: Georgia, "Times New Roman", serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: linear-gradient(180deg, var(--snow-cool), var(--snow-warm));
+        font-family: var(--ui);
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-underline-offset: 3px;
+      }
+
+      .page {
+        width: min(100%, 880px);
+        margin: 0 auto;
+        padding: 28px clamp(20px, 5vw, 48px) 64px;
+      }
+
+      header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 18px;
+        padding-bottom: 28px;
+      }
+
+      .wordmark {
+        font-family: var(--serif);
+        font-size: clamp(36px, 8vw, 72px);
+        line-height: 0.9;
+        text-decoration: none;
+      }
+
+      .header-nav {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      .nav-link {
+        color: var(--ink-56);
+        font-size: 14px;
+        text-decoration: none;
+      }
+
+      .nav-link:hover {
+        color: var(--ink);
+        text-decoration: underline;
+      }
+
+      .hero {
+        padding: clamp(32px, 7vw, 70px) 0 34px;
+        border-top: 1px solid var(--ink-08);
+        border-bottom: 1px solid var(--ink-08);
+      }
+
+      .eyebrow {
+        margin: 0 0 14px;
+        color: var(--ink-40);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 760px;
+        margin: 0;
+        font-family: var(--serif);
+        font-size: clamp(46px, 10vw, 86px);
+        font-weight: 400;
+        line-height: 0.94;
+      }
+
+      .dek {
+        max-width: 690px;
+        margin: 26px 0 0;
+        color: var(--ink-72);
+        font-size: clamp(18px, 3vw, 22px);
+        line-height: 1.5;
+      }
+
+      .meta {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin: 28px 0 0;
+        color: var(--ink-40);
+        font-size: 14px;
+      }
+
+      main {
+        padding-top: 30px;
+      }
+
+      article {
+        max-width: 760px;
+      }
+
+      section {
+        padding: 28px 0;
+        border-bottom: 1px solid var(--ink-08);
+      }
+
+      h2 {
+        margin: 0 0 14px;
+        font-family: var(--serif);
+        font-size: clamp(30px, 5vw, 46px);
+        font-weight: 400;
+        line-height: 1.05;
+      }
+
+      h3 {
+        margin: 24px 0 8px;
+        font-size: 18px;
+        line-height: 1.25;
+      }
+
+      p {
+        margin: 0 0 15px;
+        color: var(--ink-72);
+      }
+
+      ul {
+        margin: 0 0 16px;
+        padding-left: 1.25rem;
+        color: var(--ink-72);
+      }
+
+      li + li {
+        margin-top: 6px;
+      }
+
+      .callout {
+        margin: 22px 0;
+        padding: 18px;
+        border: 1px solid var(--ink-18);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .callout strong {
+        color: var(--ink);
+      }
+
+      .quote {
+        margin: 22px 0;
+        padding: 18px;
+        border-left: 3px solid var(--ink);
+        background: rgba(255, 255, 255, 0.62);
+        font-family: var(--serif);
+        font-size: clamp(24px, 5vw, 36px);
+        line-height: 1.08;
+      }
+
+      .source-list {
+        padding: 18px 18px 18px 38px;
+        border: 1px solid var(--ink-18);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.72);
+      }
+
+      .source-list a {
+        color: var(--ink);
+      }
+
+      .cta {
+        margin-top: 30px;
+        padding: 24px;
+        border: 1px solid var(--ink-18);
+        border-radius: 26px;
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: 0 20px 54px rgba(0, 0, 0, 0.05);
+      }
+
+      .cta h2 {
+        margin-bottom: 8px;
+      }
+
+      .button-link {
+        display: inline-block;
+        margin-top: 8px;
+        border: 1px solid var(--ink);
+        border-radius: 999px;
+        padding: 12px 18px;
+        color: var(--snow);
+        background: var(--ink);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      footer {
+        padding-top: 34px;
+        color: var(--ink-56);
+        font-size: 14px;
+      }
+
+      @media (max-width: 680px) {
+        header {
+          display: block;
+        }
+
+        .header-nav {
+          margin-top: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <a class="wordmark" href="/">slope</a>
+        <nav class="header-nav" aria-label="Main navigation">
+          <a class="nav-link" href="/blog/">Blog</a>
+          <a class="nav-link" href="/privacy/">Privacy</a>
+          <a class="nav-link" href="mailto:hello@getslope.app">hello@getslope.app</a>
+        </nav>
+      </header>
+
+      <div class="hero">
+        <p class="eyebrow">Slope Blog</p>
+        <h1>Tapering vs. cold turkey: why some quitting plans require medical support.</h1>
+        <p class="dek">
+          Quitting is often framed as a test of discipline. A safer question is:
+          what kind of dependence are we talking about?
+        </p>
+        <div class="meta">
+          <span>May 2026</span>
+          <span aria-hidden="true">•</span>
+          <span>Educational content, not medical advice</span>
+        </div>
+      </div>
+
+      <main>
+        <article>
+          <section>
+            <p>
+              People often talk about quitting as if there are only two options:
+              stop all at once, or slowly reduce over time. But tapering versus
+              cold turkey is not just a willpower question. For some habits, an
+              abrupt stop may be reasonable. For others, especially when physical
+              dependence is involved, stopping suddenly can be dangerous.
+            </p>
+            <div class="callout">
+              <p>
+                <strong>Important:</strong> Slope is not a medical detox tool. If
+                you may be physically dependent on alcohol, benzodiazepines,
+                opioids, or any substance where withdrawal could be dangerous, do
+                not quit suddenly or attempt to taper using an app alone. Speak
+                with a licensed medical professional or treatment provider.
+              </p>
+            </div>
+            <p>
+              Slope is designed for behavioral support, reflection, habit
+              tracking, craving support, and relapse prevention. It is not medical
+              diagnosis, treatment, detox, or a substitute for professional care.
+            </p>
+          </section>
+
+          <section>
+            <h2>Cold turkey is not always wrong.</h2>
+            <p>
+              For some behaviors, abrupt quitting can work. Smoking research is a
+              useful example. In a randomized trial published in the <em>Annals of
+              Internal Medicine</em>, smokers assigned to quit abruptly had higher
+              abstinence rates than smokers assigned to gradually reduce before
+              quitting. Both groups received behavioral support and nicotine
+              replacement therapy, so this was not simply a white-knuckle approach.
+            </p>
+            <p>
+              That matters because it prevents an overly simple conclusion.
+              Gradual reduction is not automatically better. The safer strategy
+              depends on the substance, the level of dependence, withdrawal risk,
+              and what kind of support is in place.
+            </p>
+          </section>
+
+          <section>
+            <h2>Physical dependence changes the rules.</h2>
+            <p>
+              Physical dependence means the body has adapted to a substance. When
+              that substance is removed too quickly, withdrawal can involve more
+              than cravings, irritability, or discomfort. In some cases, withdrawal
+              can include serious medical risks.
+            </p>
+            <h3>Alcohol</h3>
+            <p>
+              For people with significant alcohol dependence, withdrawal can be
+              medically serious and may require supervised care. The risk is not
+              just feeling bad for a few days; severe withdrawal can involve
+              seizures, confusion, delirium tremens, and other complications.
+            </p>
+            <h3>Benzodiazepines</h3>
+            <p>
+              Benzodiazepines are another major category where abrupt stopping can
+              be risky. Recent clinical guidance on benzodiazepine tapering
+              emphasizes that patients who are likely to be physically dependent
+              should generally not discontinue abruptly.
+            </p>
+            <h3>Opioids</h3>
+            <p>
+              Opioids are often discussed less as a simple taper-versus-cold-turkey
+              decision and more as a treatment-support question. Medications such
+              as buprenorphine are used in medical withdrawal management and
+              ongoing treatment for opioid use disorder. Unsupported withdrawal can
+              be difficult and can increase relapse risk.
+            </p>
+          </section>
+
+          <section>
+            <h2>Where Slope fits.</h2>
+            <p>
+              Slope is for the behavioral layer of change: noticing urges, naming
+              triggers, building replacement routines, tracking progress, and
+              recovering after a slip without spiraling. That can be useful for
+              many non-medical habits, and it can also be a supportive companion
+              after someone has appropriate professional care in place.
+            </p>
+            <p>Slope may be a better fit for patterns like:</p>
+            <ul>
+              <li>Reducing compulsive app or social media use</li>
+              <li>Changing pornography habits</li>
+              <li>Managing gambling urges when there is no immediate safety or financial crisis</li>
+              <li>Reducing impulse spending</li>
+              <li>Cutting back on caffeine or snacking when medically uncomplicated</li>
+              <li>Tracking nicotine cravings alongside appropriate cessation support</li>
+            </ul>
+            <p>
+              Slope is not the right tool for alcohol detox, benzodiazepine
+              withdrawal, opioid withdrawal, or any situation where withdrawal
+              could involve seizures, delirium, severe symptoms, pregnancy, major
+              psychiatric instability, or polysubstance use.
+            </p>
+          </section>
+
+          <section>
+            <h2>A better way to think about quitting.</h2>
+            <div class="quote">
+              The goal is not to quit in the most dramatic way. The goal is to
+              change in the safest, most sustainable way.
+            </div>
+            <p>
+              For some habits, that may mean setting a quit date and stopping all
+              at once. For others, it may mean a gradual plan. And for substances
+              with physical withdrawal risk, it means getting medical guidance
+              before changing use.
+            </p>
+          </section>
+
+          <section>
+            <h2>Sources and further reading</h2>
+            <ul class="source-list">
+              <li>
+                Lindson-Hawley N, et al. <a href="https://pubmed.ncbi.nlm.nih.gov/26975007/">Gradual Versus Abrupt Smoking Cessation: A Randomized, Controlled Noninferiority Trial</a>. <em>Annals of Internal Medicine</em>. 2016.
+              </li>
+              <li>
+                Brunner E, et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12463801/">Joint Clinical Practice Guideline on Benzodiazepine Tapering: Considerations When Risks Outweigh Benefits</a>. <em>Journal of General Internal Medicine</em>. 2025.
+              </li>
+              <li>
+                Gowing L, et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6464315/">Buprenorphine for managing opioid withdrawal</a>. <em>Cochrane Database of Systematic Reviews</em>.
+              </li>
+              <li>
+                Sachdeva A, et al. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4606320/">Alcohol Withdrawal Syndrome: Benzodiazepines and Beyond</a>. <em>Journal of Clinical and Diagnostic Research</em>. 2015.
+              </li>
+            </ul>
+          </section>
+
+          <div class="cta">
+            <h2>Change does not have to be all-or-nothing.</h2>
+            <p>
+              For non-medical habit change and craving support, Slope helps you
+              understand your triggers, track progress, and build a routine that
+              feels realistic. If physical withdrawal may be involved, speak with a
+              medical professional first.
+            </p>
+            <a class="button-link" href="/">Join the beta waitlist</a>
+          </div>
+        </article>
+      </main>
+
+      <footer>
+        <p>&copy; Slope: Habit Tapering. Educational content only; not medical advice.</p>
+      </footer>
+    </div>
+  </body>
+</html>
