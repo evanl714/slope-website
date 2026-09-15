@@ -56,3 +56,5 @@ footer { padding-top: 80px; color: var(--ink-40); font-size: 13px; }
 .breadcrumb { font-size: 13px; color: #626262; margin: 0 0 22px; }
 .breadcrumb a { text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
+.habit-links-top { margin-top: 28px; padding: 0; border-top: 0; }
+.habit-links-top + .calculator { margin-top: 28px; }
