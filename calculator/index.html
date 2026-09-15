@@ -3,141 +3,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Slope — Daily Tapering Calculator</title>
+    <title>Habit Taper Calculator — Plan a Gradual Quit Date | Slope</title>
     <meta
       name="description"
-      content="Preview your daily habit taper with Slope’s free calculator. Choose your starting ratio and timeline to see your phases and day-by-day plan."
+      content="Free habit taper calculator. Pick a starting ratio and a quit date to get a gradual, day-by-day taper schedule with phases that add more space between habit days. Works for caffeine, vaping, social media, and more."
     >
-    <style>
-      :root {
-        --snow: #ffffff;
-        --snow-cool: #fafafd;
-        --snow-warm: #f8f6f1;
-        --ink: #000000;
-        --ink-72: rgba(0, 0, 0, 0.72);
-        --ink-56: rgba(0, 0, 0, 0.56);
-        --ink-40: rgba(0, 0, 0, 0.40);
-        --ink-18: rgba(0, 0, 0, 0.18);
-        --ink-08: rgba(0, 0, 0, 0.08);
-        --ui: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        --serif: Georgia, "Times New Roman", serif;
-      }
-
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        color: var(--ink);
-        background: linear-gradient(180deg, var(--snow-cool), var(--snow-warm));
-        font-family: var(--ui);
-        line-height: 1.6;
-        min-height: 100vh;
-      }
-
-      a {
-        color: inherit;
-        text-underline-offset: 3px;
-      }
-
-      .page {
-        width: min(100%, 880px);
-        margin: 0 auto;
-        padding: 28px clamp(20px, 5vw, 48px) 64px;
-      }
-
-      header {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 18px;
-        padding-bottom: 28px;
-      }
-
-      .wordmark {
-        font-family: var(--serif);
-        font-size: clamp(36px, 8vw, 72px);
-        line-height: 0.9;
-        text-decoration: none;
-      }
-
-      .header-nav {
-        display: flex;
-        align-items: center;
-        gap: 18px;
-        flex-wrap: wrap;
-      }
-
-      .nav-link {
-        color: var(--ink-56);
-        font-size: 14px;
-        text-decoration: none;
-      }
-
-      .nav-link:hover {
-        color: var(--ink);
-        text-decoration: underline;
-      }
-
-      .hero {
-        padding: clamp(48px, 10vw, 96px) 0 clamp(48px, 8vw, 80px);
-        border-top: 1px solid var(--ink-08);
-      }
-
-      h1 {
-        max-width: 720px;
-        margin: 0 0 28px;
-        font-family: var(--serif);
-        font-size: clamp(52px, 11vw, 96px);
-        font-weight: 400;
-        line-height: 0.92;
-      }
-
-      .tagline {
-        max-width: 560px;
-        margin: 0;
-        color: var(--ink-72);
-        font-size: clamp(18px, 3vw, 22px);
-        line-height: 1.5;
-      }
-
-      .links {
-        display: flex;
-        align-items: center;
-        gap: 24px;
-        margin-top: 32px;
-        flex-wrap: wrap;
-      }
-
-      .link-privacy {
-        color: var(--ink-56);
-        font-size: 14px;
-        text-decoration: none;
-      }
-
-      .link-privacy:hover {
-        color: var(--ink);
-        text-decoration: underline;
-      }
-
-      footer {
-        padding-top: 80px;
-        color: var(--ink-40);
-        font-size: 13px;
-      }
-
-      @media (max-width: 680px) {
-        header {
-          display: block;
-        }
-
-        .header-nav {
-          margin-top: 12px;
-        }
-
-      }
-    </style>
+    <link rel="canonical" href="https://getslope.app/calculator/">
+    <link rel="stylesheet" href="/calculator/page.css">
     <link rel="stylesheet" href="/calculator/calculator.css">
     <script type="module" src="/calculator/calculator.mjs"></script>
   </head>
@@ -147,6 +19,7 @@
         <a class="wordmark" href="/">slope</a>
         <nav class="header-nav" aria-label="Main navigation">
           <a class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="/calculator/" aria-current="page">Calculator</a>
           <a class="nav-link" href="/blog/">Blog</a>
           <a class="nav-link" href="/privacy/">Privacy</a>
           <a class="nav-link" href="/contact/">Contact</a>
@@ -155,60 +28,166 @@
 
       <main class="hero">
         <p class="eyebrow">a little less. a little further.</p>
-        <h1>Preview your<br>daily slope.</h1>
+        <h1>Build a gradual taper schedule.</h1>
         <p class="tagline">
-          A little more space between habits. Preview your daily taper,
-          one phase at a time.
+          Pick where you’re starting and when you’d like to be done. Slope maps your
+          daily slope with a little more space between habit days, one phase at a time.
         </p>
 
         <div class="links">
           <a class="download-app" href="https://apps.apple.com/us/app/slope-private-habit-tapering/id6767213637">Download on the App Store ↗</a>
         </div>
 
-        <section class="calculator" id="calculator" aria-label="Daily tapering calculator">
-          <form class="setup" id="calculator-form">
-            <p class="eyebrow">01 / your starting point</p>
-            <h2>build your slope</h2>
-            <p class="help">Off days are breaks from your habit. Mogul days are planned days when you may engage in it.</p>
-            <fieldset>
-              <legend>Starting ratio · off : mogul</legend>
-              <div class="ratios" id="ratios"></div>
-              <p class="small" id="ratio-description"></p>
-            </fieldset>
-            <label class="field-label" for="start-date">Start date</label>
-            <input class="date-input" id="start-date" type="date" required>
-            <label class="field-label" for="target-date">Completion date</label>
-            <input class="date-input" id="target-date" type="date" required aria-describedby="timeline-help">
-            <p class="help" id="timeline-help">Allow at least 14 days, just like in the app. Preview up to one year.</p>
-            <button class="calculate" type="submit">Preview my slope ↗</button>
-            <p class="error" id="error" role="alert" hidden></p>
-            <p class="private-note">Your dates and ratio stay in your browser.</p>
-          </form>
-          <div class="results" id="results">
-            <div class="result-heading"><h2>your trail map</h2><span class="eyebrow">daily taper</span></div>
-            <p class="help" id="summary" role="status" aria-live="polite"></p>
-            <div class="stats">
-              <div><strong id="total-days">—</strong><span>days on your slope</span></div>
-              <div><strong id="off-days">—</strong><span>off days</span></div>
-              <div><strong id="mogul-days">—</strong><span>mogul days</span></div>
-            </div>
-            <svg class="trail" id="trail" viewBox="0 0 560 180" role="img" aria-label="A descending trail with dots marking planned mogul days"></svg>
-            <div class="legend"><span><i class="key"></i>off day</span><span><i class="key mogul"></i>mogul day</span></div>
-            <table class="phases"><caption class="small">Your phases · off days : mogul days</caption><thead><tr><th scope="col">Phase</th><th scope="col">Ratio</th><th scope="col">Dates</th><th scope="col">Days</th></tr></thead><tbody id="phase-rows"></tbody></table>
-            <p class="small">Each phase adds more space between moguls. The last phase ends at your completion date, even partway through a cycle.</p>
-            <section class="calendar-section" aria-label="Day-by-day schedule">
-              <div class="calendar-header"><h3 id="calendar-title"></h3><div class="month-controls"><button type="button" id="previous-month" aria-label="Previous month">←</button><button type="button" id="next-month" aria-label="Next month">→</button></div></div>
-              <div class="calendar-grid" id="calendar"></div>
-              <p class="small" id="completion-note"></p>
-            </section>
-          </div>
-        </section>
+        <section class="calculator" id="calculator" aria-label="Habit taper calculator"></section>
         <noscript><p>Enable JavaScript to preview your tapering schedule. Calculations run entirely in your browser.</p></noscript>
+
+        <section class="habit-links" aria-label="Habit-specific calculators">
+          <p>Planning a specific habit? Start from a page with copy and defaults for it.</p>
+          <ul>
+            <li><a href="/calculator/caffeine/">Caffeine taper</a></li>
+            <li><a href="/calculator/vaping/">Vaping taper</a></li>
+            <li><a href="/calculator/social-media/">Social media taper</a></li>
+          </ul>
+        </section>
+
         <section class="app-callout">
           <div><h2>take your slope with you.</h2><p>Daily check-ins, reminders, and room for detours. Build the same plan in the Slope app.</p></div>
           <a class="download-app" href="https://apps.apple.com/us/app/slope-private-habit-tapering/id6767213637">Get Slope for iPhone ↗</a>
         </section>
-        <p class="calculator-note">This is a preview of a fresh daily plan using the app’s calculations. Custom phases and logged detours can change your plan in the app. This calculator schedules days, not doses, and is not medical advice. If reducing a substance could cause withdrawal or you’ve been advised to taper with medical supervision, talk to a clinician before making a plan.</p>
+
+        <article class="guide" aria-labelledby="guide-heading">
+          <h2 id="guide-heading">How this taper calculator works</h2>
+          <p>
+            Most quit plans count doses: one fewer cigarette, one fewer coffee, ten fewer
+            minutes. This calculator counts days instead. Every day on your schedule is
+            either an <strong>off day</strong>, when you take a break from the habit, or a
+            <strong>mogul day</strong>, when you’ve planned to allow it. Your starting ratio
+            describes how those days alternate at the beginning. A 3:1 ratio means three off
+            days followed by one mogul day. A 1:1 ratio alternates. If you’re starting from
+            every day, you can begin inverted with a 1:2 or 1:3 ratio: one off day for every
+            two or three habit days.
+          </p>
+          <p>
+            The calculator splits your timeline into phases. Each phase repeats its ratio for
+            a set number of cycles, then the next phase adds one more off day to the pattern.
+            3:1 becomes 4:1, then 5:1, and so on until your completion date. Phase length
+            scales with your timeline, so a longer plan spends more time at each step. The
+            final phase ends on your completion date even if that lands partway through a
+            cycle, so the plan always finishes when you said it would.
+          </p>
+          <p>
+            This is the same schedule generator used inside the Slope app. What you preview
+            here is exactly what a fresh plan looks like there, before any logged detours or
+            custom phases.
+          </p>
+
+          <h2>Why spacing days beats cutting doses</h2>
+          <p>
+            For many habits there isn’t a clean dose to cut. Scrolling, gambling urges,
+            snacking, and pornography don’t come in milligrams. Even for habits that do, like
+            caffeine or nicotine, dose cutting tends to drift. A “smaller” coffee becomes a
+            large one by Thursday, and after a couple of weeks it’s hard to tell whether
+            you’re actually tapering.
+          </p>
+          <p>
+            Days are easier to keep honest. An off day is a yes-or-no question, and you can
+            answer it at bedtime. Spacing also gives you something dose cutting doesn’t:
+            practice at the thing you’re ultimately trying to do, which is getting through a
+            whole day without the habit. Each phase makes those stretches a little longer. By
+            the time you reach your quit date, a week without the habit is something you’ve
+            already done several times, not a leap.
+          </p>
+          <p>
+            For substances, spacing works well alongside a smaller amount. Keeping mogul days
+            modest while adding off days between them is a reasonable way to soften the
+            transition. Our guide to <a href="/blog/how-to-taper-off-caffeine/">tapering off
+            caffeine without headaches</a> walks through that combination for coffee and
+            energy drinks.
+          </p>
+          <div class="callout">
+            <p>
+              <strong>One honest caveat.</strong> Gradual isn’t automatically better. In a
+              large randomized trial, smokers who quit abruptly with support did slightly
+              better than smokers who reduced first. And for alcohol, benzodiazepines, or
+              opioids, withdrawal can be medically dangerous and needs a clinician, not an
+              app. We cover the evidence in
+              <a href="/blog/tapering-vs-cold-turkey/">tapering vs. cold turkey</a>.
+            </p>
+          </div>
+
+          <h2>What a 14-day plan vs. a 90-day plan looks like</h2>
+          <p>
+            The timeline you choose changes the plan more than the ratio does. Here’s how a
+            3:1 start plays out across three common timelines.
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th scope="col">Timeline</th><th scope="col">Phases</th><th scope="col">Ratios</th><th scope="col">Mogul days</th><th scope="col">Off days</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>14 days</td><td>2</td><td>3:1 → 4:1</td><td>3</td><td>11</td></tr>
+                <tr><td>30 days</td><td>3</td><td>3:1 → 5:1</td><td>6</td><td>24</td></tr>
+                <tr><td>90 days</td><td>7</td><td>3:1 → 9:1</td><td>14</td><td>76</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>
+            <strong>A 14-day plan is a sprint.</strong> It only has room for two phases, so
+            it works best for a habit you’ve already loosened, where you mostly want a firm
+            end date and a few planned days on the way there. Fourteen days is also the
+            minimum the app allows.
+          </p>
+          <p>
+            <strong>A 90-day plan is a slope.</strong> By the middle of it you’re spending a
+            week between mogul days, and the last phase stretches to nine off days at a time.
+            That suits a daily, long-standing habit, where the point is to make each step
+            small enough that you barely notice the ground changing. If you’re starting from
+            every day, a 90-day plan with a 1:3 start gives you eight phases and still gets
+            you to 6:1 by the end.
+          </p>
+          <p>
+            Something in between, around 30 to 60 days, is where most people land. Use the
+            calendar above to check the plan against real life. If a phase change lands on a
+            weekend or a trip that worries you, shift the completion date a few days and look
+            again.
+          </p>
+
+          <h2>What to do on a detour</h2>
+          <p>
+            A detour is the habit showing up on a scheduled off day. It will happen, and the
+            plan is built to absorb it. A few things help:
+          </p>
+          <ul>
+            <li><strong>Log it the same day.</strong> In the app, recording a detour keeps the
+              record honest and shows you the pattern later. A detour you don’t write down
+              turns into a story about failure instead of a data point.</li>
+            <li><strong>Don’t compensate.</strong> Adding extra off days to “make up for it”
+              usually produces a harder week and a second detour. Keep the next mogul day
+              where it is.</li>
+            <li><strong>Give the phase more time if you need to.</strong> The app lets you
+              repeat your current phase instead of moving on to the next ratio. Two or three
+              detours in one phase is a sign the step was too big, not that you’re done.</li>
+            <li><strong>Look for the shape.</strong> Detours cluster: Friday evenings, the
+              day after a bad night’s sleep, a particular person. Once you can name the
+              trigger, you can plan the next mogul day around it instead of being ambushed.</li>
+          </ul>
+          <p>
+            This calculator previews a fresh plan. Logged detours and phase extensions
+            change the schedule inside the app, which is why the same start and end dates
+            can look different there once you’re a few weeks in.
+          </p>
+
+          <h2>Who this is for</h2>
+          <p>
+            Slope is a habit-planning tool, not medical advice. It’s a good fit for
+            behavioral habits and for medically uncomplicated substances like caffeine. If
+            reducing a substance could cause withdrawal, or you’ve been advised to taper
+            with medical supervision, talk to a clinician before making a plan. Custom
+            phases and logged detours are available in the app, and everything you enter
+            here stays in your browser.
+          </p>
+        </article>
 
         <div class="links">
           <a class="link-privacy" href="/blog/">Read the blog</a>

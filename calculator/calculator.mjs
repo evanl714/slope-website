@@ -1,18 +1,26 @@
 import { presets, ratio, generate, dateNumber, dateString } from './schedule.mjs';
+import { widget } from './widget.mjs';
+
+// Mount the shared widget. Habit pages can suggest a starting point with
+// data-ratio and data-days on the #calculator element.
+const host = document.getElementById('calculator');
+if (!document.getElementById('calculator-form')) host.innerHTML = widget;
+const defaultRatio = presets.includes(Number(host.dataset.ratio)) ? Number(host.dataset.ratio) : 3;
+const defaultDays = Math.min(365, Math.max(14, Number(host.dataset.days) || 30));
 
 const $ = id => document.getElementById(id);
 const startInput = $('start-date'), targetInput = $('target-date');
 const dateFormat = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
 const longFormat = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 const format = (day, long = false) => (long ? longFormat : dateFormat).format(new Date(day * 86400000));
-let selectedRatio = 3, currentPlan, calendarMonth;
+let selectedRatio = defaultRatio, currentPlan, calendarMonth;
 
 for (const value of presets) {
   const { off, mogul } = ratio(value);
   const label = document.createElement('label');
   label.className = 'ratio';
   const input = document.createElement('input');
-  input.type = 'radio'; input.name = 'ratio'; input.value = value; input.checked = value === 3;
+  input.type = 'radio'; input.name = 'ratio'; input.value = value; input.checked = value === defaultRatio;
   input.setAttribute('aria-label', `${off} off ${off === 1 ? 'day' : 'days'} to ${mogul} mogul ${mogul === 1 ? 'day' : 'days'}`);
   const text = document.createElement('span'); text.textContent = `${off}:${mogul}`;
   label.append(input, text); $('ratios').append(label);
@@ -117,5 +125,5 @@ $('next-month').addEventListener('click', () => { calendarMonth = shiftMonth(cal
 $('calculator-form').addEventListener('submit', event => { event.preventDefault(); render(); });
 const now = new Date();
 startInput.value = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-targetInput.value = dateString(dateNumber(startInput.value) + 30);
+targetInput.value = dateString(dateNumber(startInput.value) + defaultDays);
 bounds(); describeRatio(); render();
