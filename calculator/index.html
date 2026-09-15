@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Slope — Daily Tapering Calculator</title>
+    <meta
+      name="description"
+      content="Preview your daily habit taper with Slope’s free calculator. Choose your starting ratio and timeline to see your phases and day-by-day plan."
+    >
+    <style>
+      :root {
+        --snow: #ffffff;
+        --snow-cool: #fafafd;
+        --snow-warm: #f8f6f1;
+        --ink: #000000;
+        --ink-72: rgba(0, 0, 0, 0.72);
+        --ink-56: rgba(0, 0, 0, 0.56);
+        --ink-40: rgba(0, 0, 0, 0.40);
+        --ink-18: rgba(0, 0, 0, 0.18);
+        --ink-08: rgba(0, 0, 0, 0.08);
+        --ui: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --serif: Georgia, "Times New Roman", serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: linear-gradient(180deg, var(--snow-cool), var(--snow-warm));
+        font-family: var(--ui);
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      a {
+        color: inherit;
+        text-underline-offset: 3px;
+      }
+
+      .page {
+        width: min(100%, 880px);
+        margin: 0 auto;
+        padding: 28px clamp(20px, 5vw, 48px) 64px;
+      }
+
+      header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 18px;
+        padding-bottom: 28px;
+      }
+
+      .wordmark {
+        font-family: var(--serif);
+        font-size: clamp(36px, 8vw, 72px);
+        line-height: 0.9;
+        text-decoration: none;
+      }
+
+      .header-nav {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      .nav-link {
+        color: var(--ink-56);
+        font-size: 14px;
+        text-decoration: none;
+      }
+
+      .nav-link:hover {
+        color: var(--ink);
+        text-decoration: underline;
+      }
+
+      .hero {
+        padding: clamp(48px, 10vw, 96px) 0 clamp(48px, 8vw, 80px);
+        border-top: 1px solid var(--ink-08);
+      }
+
+      h1 {
+        max-width: 720px;
+        margin: 0 0 28px;
+        font-family: var(--serif);
+        font-size: clamp(52px, 11vw, 96px);
+        font-weight: 400;
+        line-height: 0.92;
+      }
+
+      .tagline {
+        max-width: 560px;
+        margin: 0;
+        color: var(--ink-72);
+        font-size: clamp(18px, 3vw, 22px);
+        line-height: 1.5;
+      }
+
+      .links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        margin-top: 32px;
+        flex-wrap: wrap;
+      }
+
+      .link-privacy {
+        color: var(--ink-56);
+        font-size: 14px;
+        text-decoration: none;
+      }
+
+      .link-privacy:hover {
+        color: var(--ink);
+        text-decoration: underline;
+      }
+
+      footer {
+        padding-top: 80px;
+        color: var(--ink-40);
+        font-size: 13px;
+      }
+
+      @media (max-width: 680px) {
+        header {
+          display: block;
+        }
+
+        .header-nav {
+          margin-top: 12px;
+        }
+
+      }
+    </style>
+    <link rel="stylesheet" href="/calculator/calculator.css">
+    <script type="module" src="/calculator/calculator.mjs"></script>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <a class="wordmark" href="/">slope</a>
+        <nav class="header-nav" aria-label="Main navigation">
+          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="/blog/">Blog</a>
+          <a class="nav-link" href="/privacy/">Privacy</a>
+          <a class="nav-link" href="/contact/">Contact</a>
+        </nav>
+      </header>
+
+      <main class="hero">
+        <p class="eyebrow">a little less. a little further.</p>
+        <h1>Preview your<br>daily slope.</h1>
+        <p class="tagline">
+          A little more space between habits. Preview your daily taper,
+          one phase at a time.
+        </p>
+
+        <div class="links">
+          <a class="download-app" href="https://apps.apple.com/us/app/slope-private-habit-tapering/id6767213637">Download on the App Store ↗</a>
+        </div>
+
+        <section class="calculator" id="calculator" aria-label="Daily tapering calculator">
+          <form class="setup" id="calculator-form">
+            <p class="eyebrow">01 / your starting point</p>
+            <h2>build your slope</h2>
+            <p class="help">Off days are breaks from your habit. Mogul days are planned days when you may engage in it.</p>
+            <fieldset>
+              <legend>Starting ratio · off : mogul</legend>
+              <div class="ratios" id="ratios"></div>
+              <p class="small" id="ratio-description"></p>
+            </fieldset>
+            <label class="field-label" for="start-date">Start date</label>
+            <input class="date-input" id="start-date" type="date" required>
+            <label class="field-label" for="target-date">Completion date</label>
+            <input class="date-input" id="target-date" type="date" required aria-describedby="timeline-help">
+            <p class="help" id="timeline-help">Allow at least 14 days, just like in the app. Preview up to one year.</p>
+            <button class="calculate" type="submit">Preview my slope ↗</button>
+            <p class="error" id="error" role="alert" hidden></p>
+            <p class="private-note">Your dates and ratio stay in your browser.</p>
+          </form>
+          <div class="results" id="results">
+            <div class="result-heading"><h2>your trail map</h2><span class="eyebrow">daily taper</span></div>
+            <p class="help" id="summary" role="status" aria-live="polite"></p>
+            <div class="stats">
+              <div><strong id="total-days">—</strong><span>days on your slope</span></div>
+              <div><strong id="off-days">—</strong><span>off days</span></div>
+              <div><strong id="mogul-days">—</strong><span>mogul days</span></div>
+            </div>
+            <svg class="trail" id="trail" viewBox="0 0 560 180" role="img" aria-label="A descending trail with dots marking planned mogul days"></svg>
+            <div class="legend"><span><i class="key"></i>off day</span><span><i class="key mogul"></i>mogul day</span></div>
+            <table class="phases"><caption class="small">Your phases · off days : mogul days</caption><thead><tr><th scope="col">Phase</th><th scope="col">Ratio</th><th scope="col">Dates</th><th scope="col">Days</th></tr></thead><tbody id="phase-rows"></tbody></table>
+            <p class="small">Each phase adds more space between moguls. The last phase ends at your completion date, even partway through a cycle.</p>
+            <section class="calendar-section" aria-label="Day-by-day schedule">
+              <div class="calendar-header"><h3 id="calendar-title"></h3><div class="month-controls"><button type="button" id="previous-month" aria-label="Previous month">←</button><button type="button" id="next-month" aria-label="Next month">→</button></div></div>
+              <div class="calendar-grid" id="calendar"></div>
+              <p class="small" id="completion-note"></p>
+            </section>
+          </div>
+        </section>
+        <noscript><p>Enable JavaScript to preview your tapering schedule. Calculations run entirely in your browser.</p></noscript>
+        <section class="app-callout">
+          <div><h2>take your slope with you.</h2><p>Daily check-ins, reminders, and room for detours. Build the same plan in the Slope app.</p></div>
+          <a class="download-app" href="https://apps.apple.com/us/app/slope-private-habit-tapering/id6767213637">Get Slope for iPhone ↗</a>
+        </section>
+        <p class="calculator-note">This is a preview of a fresh daily plan using the app’s calculations. Custom phases and logged detours can change your plan in the app. This calculator schedules days, not doses, and is not medical advice. If reducing a substance could cause withdrawal or you’ve been advised to taper with medical supervision, talk to a clinician before making a plan.</p>
+
+        <div class="links">
+          <a class="link-privacy" href="/blog/">Read the blog</a>
+          <a class="link-privacy" href="/privacy/">Privacy Policy</a>
+          <a class="link-privacy" href="/contact/">Contact</a>
+        </div>
+      </main>
+
+      <footer>
+        <p>&copy; Slope: Habit Tapering</p>
+      </footer>
+    </div>
+    <!-- Cloudflare Web Analytics -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"979646bf4acc4895b348c55043545a70"}'></script>
+    <!-- End Cloudflare Web Analytics -->
+  </body>
+</html>

@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Slope — Habit Tapering</title>
+    <title>Slope — Habit Tapering for iPhone</title>
     <meta
       name="description"
-      content="Slope helps you reduce habits gradually and privately. A gentle, structured way to taper any habit on your own terms."
+      content="Make room for change, one day at a time. Slope for iPhone helps you gradually space out habits with a daily plan, check-ins, and room for detours."
     >
     <style>
       :root {
@@ -102,84 +102,6 @@
         line-height: 1.5;
       }
 
-      .waitlist {
-        margin-top: 40px;
-        width: min(100%, 520px);
-        padding: clamp(20px, 4vw, 28px);
-        border: 1px solid var(--ink-08);
-        border-radius: 28px;
-        background: rgba(255, 255, 255, 0.64);
-        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.06);
-      }
-
-      .waitlist h2 {
-        margin: 0 0 8px;
-        font-family: var(--serif);
-        font-size: clamp(28px, 5vw, 40px);
-        font-weight: 400;
-        line-height: 1;
-      }
-
-      .waitlist p {
-        margin: 0 0 20px;
-        color: var(--ink-56);
-        font-size: 15px;
-      }
-
-      .waitlist-form {
-        display: flex;
-        gap: 10px;
-      }
-
-      .waitlist-form label {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-      }
-
-      .waitlist-form input {
-        min-width: 0;
-        flex: 1;
-        border: 1px solid var(--ink-18);
-        border-radius: 999px;
-        padding: 14px 18px;
-        color: var(--ink);
-        background: var(--snow);
-        font: inherit;
-      }
-
-      .waitlist-form input:focus {
-        outline: 2px solid var(--ink);
-        outline-offset: 2px;
-      }
-
-      .waitlist-form button {
-        border: 1px solid var(--ink);
-        border-radius: 999px;
-        padding: 14px 20px;
-        color: var(--snow);
-        background: var(--ink);
-        font: inherit;
-        font-weight: 700;
-        cursor: pointer;
-      }
-
-      .waitlist-form button:hover {
-        transform: translateY(-1px);
-      }
-
-      .waitlist-note {
-        margin-top: 12px;
-        color: var(--ink-40);
-        font-size: 13px;
-      }
-
       .links {
         display: flex;
         align-items: center;
@@ -214,71 +136,87 @@
           margin-top: 12px;
         }
 
-        .waitlist-form {
-          display: grid;
-        }
-
-        .waitlist-form button {
-          width: 100%;
-        }
       }
     </style>
+    <link rel="stylesheet" href="/calculator/calculator.css">
+    <link rel="stylesheet" href="/landing.css">
+    <script defer src="/gallery.js"></script>
   </head>
   <body>
     <div class="page">
       <header>
         <a class="wordmark" href="/">slope</a>
         <nav class="header-nav" aria-label="Main navigation">
+          <a class="nav-link" href="/calculator/">Calculator</a>
           <a class="nav-link" href="/blog/">Blog</a>
           <a class="nav-link" href="/privacy/">Privacy</a>
           <a class="nav-link" href="/contact/">Contact</a>
         </nav>
       </header>
 
-      <div class="hero">
-        <h1>Taper any habit, gradually.</h1>
-        <p class="tagline">
-          Slope helps you reduce habits on your own terms — with a gentle,
-          structured plan that keeps your data private and on your device.
-        </p>
-
-        <section class="waitlist" aria-labelledby="waitlist-heading">
-          <h2 id="waitlist-heading">Join the beta waitlist.</h2>
-          <p>
-            Be first to try Slope when beta invites open. We will only use your
-            email for beta updates.
-          </p>
-          <form
-            class="waitlist-form"
-            action="mailto:hello@getslope.app?subject=Slope%20beta%20waitlist"
-            method="post"
-            enctype="text/plain"
-          >
-            <label for="waitlist-email">Email address</label>
-            <input
-              id="waitlist-email"
-              name="email"
-              type="email"
-              placeholder="you@example.com"
-              autocomplete="email"
-              required
-            >
-            <button type="submit">Join waitlist</button>
-          </form>
-          <div class="waitlist-note">Submits through your email app.</div>
+      <main>
+        <section class="landing-hero">
+          <div class="hero-copy">
+            <p class="eyebrow">a little less. a little further.</p>
+            <h1>Find your own<br>way down.</h1>
+            <p class="tagline">Make room for change, one day at a time. Slope helps you gradually space out a habit with a clear plan and room for real life.</p>
+            <div class="links">
+              <a class="download-app" href="https://apps.apple.com/us/app/slope-private-habit-tapering/id6767213637">Download on the App Store ↗</a>
+              <a class="text-link" href="/calculator/">Try the tapering calculator →</a>
+            </div>
+            <p class="small">Made for iPhone. Your habit data stays on your device.</p>
+          </div>
+          <figure class="app-preview">
+            <a href="/images/daily-trail.jpg" aria-label="View the daily trail screenshot in the image viewer"><img src="/images/daily-trail.jpg" width="1320" height="2868" fetchpriority="high" alt="Slope’s daily dashboard showing a tapering trail, upcoming phases, and options to log a detour or ride out an urge."></a>
+          </figure>
         </section>
-
-        <div class="links">
-          <a class="link-privacy" href="/blog/">Read the blog</a>
-          <a class="link-privacy" href="/privacy/">Privacy Policy</a>
-          <a class="link-privacy" href="/contact/">Contact</a>
-        </div>
-      </div>
+        <section class="feature-section" aria-labelledby="features-heading">
+          <p class="eyebrow">small steps, a clear direction</p>
+          <h2 id="features-heading">A plan you can come back to.</h2>
+          <div class="feature-grid">
+            <article><span class="feature-number">01</span><h3>start where you are.</h3><p>Choose your starting ratio and a completion date. Slope builds a daily trail with gradually longer breaks between planned mogul days.</p></article>
+            <article><span class="feature-number">02</span><h3>take it day by day.</h3><p>See what’s ahead, check in with your plan, and use reminders to keep your next step in sight.</p></article>
+            <article><span class="feature-number">03</span><h3>leave room for detours.</h3><p>A difficult day doesn’t erase your progress. Log a detour and keep going, with the option to give your current phase more time.</p></article>
+          </div>
+        </section>
+        <section class="screenshots-section" aria-labelledby="screenshots-heading">
+          <p class="eyebrow">a closer look</p>
+          <h2 id="screenshots-heading">Meet your daily companion.</h2>
+          <p class="gallery-help">Explore the app. Select a screenshot to see it in the image viewer.</p>
+          <div id="screenshot-gallery" class="screenshot-gallery" tabindex="0" role="region" aria-label="App screenshots. Scroll horizontally to see more.">
+            <figure class="screenshot-card"><a href="/images/getting-started.jpg" aria-label="View start where you are screenshot in the image viewer"><img src="/images/getting-started.jpg" width="1320" height="2868" loading="lazy" decoding="async" alt="Slope’s introduction explaining starting pace, following the schedule, and gradually increasing off days."></a><figcaption>Start where you are</figcaption></figure>
+            <figure class="screenshot-card"><a href="/images/active-slopes.jpg" aria-label="View your habits, in one place screenshot in the image viewer"><img src="/images/active-slopes.jpg" width="1320" height="2868" loading="lazy" decoding="async" alt="Slope’s Today screen showing three active habit plans."></a><figcaption>Your habits, in one place<small>Multiple active slopes available with Pro.</small></figcaption></figure>
+            <figure class="screenshot-card"><a href="/images/ride-it-out.jpg" aria-label="View ride out an urge screenshot in the image viewer"><img src="/images/ride-it-out.jpg" width="1320" height="2868" loading="lazy" decoding="async" alt="The Ride It Out breathing exercise with inhale, hold, and exhale cues along a ski trail."></a><figcaption>Ride out an urge</figcaption></figure>
+            <figure class="screenshot-card"><a href="/images/completed-trail.jpg" aria-label="View see how far you’ve come screenshot in the image viewer"><img src="/images/completed-trail.jpg" width="1320" height="2868" loading="lazy" decoding="async" alt="A completed trail showing phase milestones and 127 days without nicotine."></a><figcaption>See how far you’ve come</figcaption></figure>
+            <figure class="screenshot-card"><a href="/images/export-records.jpg" aria-label="View share your progress screenshot in the image viewer"><img src="/images/export-records.jpg" width="1320" height="2868" loading="lazy" decoding="async" alt="Slope’s export screen offering summary PDF, therapist PDF, CSV, and JSON formats."></a><figcaption>Share your progress<small>Exports available with Pro.</small></figcaption></figure>
+          </div>
+          <div class="gallery-controls" hidden>
+            <button type="button" id="gallery-previous" class="round-control" aria-label="Previous screenshots" aria-controls="screenshot-gallery">←</button>
+            <input id="gallery-position" type="range" min="0" max="100" value="0" aria-label="Scroll screenshots" aria-controls="screenshot-gallery">
+            <button type="button" id="gallery-next" class="round-control" aria-label="Next screenshots" aria-controls="screenshot-gallery">→</button>
+          </div>
+        </section>
+        <section class="calculator-invite" aria-labelledby="calculator-heading">
+          <div><p class="eyebrow">get a feel for your plan</p><h2 id="calculator-heading">What could your slope look like?</h2><p>Explore your starting ratio, phases, and day-by-day calendar with the same daily calculations used in the app.</p></div>
+          <a class="download-app" href="/calculator/">Try the free calculator →</a>
+        </section>
+        <section class="app-callout">
+          <div><h2>your next step, on your terms.</h2><p>Bring your daily trail along with Slope for iPhone.</p></div>
+          <a class="download-app" href="https://apps.apple.com/us/app/slope-private-habit-tapering/id6767213637">Get Slope for iPhone ↗</a>
+        </section>
+        <p class="calculator-note">Slope is a habit-planning tool, not medical advice. If reducing a substance could cause withdrawal or you’ve been advised to taper with medical supervision, talk to a clinician before making a plan.</p>
+      </main>
 
       <footer>
+        <nav class="header-nav" aria-label="Footer navigation"><a class="nav-link" href="/calculator/">Calculator</a><a class="nav-link" href="/blog/">Blog</a><a class="nav-link" href="/privacy/">Privacy</a><a class="nav-link" href="/contact/">Contact</a></nav>
         <p>&copy; Slope: Habit Tapering</p>
       </footer>
     </div>
+    <dialog id="image-viewer" aria-label="App screenshot viewer">
+      <div class="viewer-toolbar"><p id="viewer-count" aria-live="polite"></p><button type="button" id="viewer-close" class="round-control" aria-label="Close image viewer" autofocus>×</button></div>
+      <div class="viewer-stage"><button type="button" id="viewer-previous" class="round-control" aria-label="Previous screenshot">←</button><img id="viewer-image" alt=""><button type="button" id="viewer-next" class="round-control" aria-label="Next screenshot">→</button></div>
+      <p id="viewer-caption"></p>
+    </dialog>
     <!-- Cloudflare Web Analytics -->
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"979646bf4acc4895b348c55043545a70"}'></script>
     <!-- End Cloudflare Web Analytics -->

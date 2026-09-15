@@ -1,0 +1,71 @@
+:root { --ui: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+body { background: #fff; }
+.page { width: min(100%, 1100px); }
+.wordmark { font-family: var(--ui); font-size: 34px; font-weight: 850; letter-spacing: -2px; }
+.hero { padding: 48px 0 0; }
+h1 { font-family: var(--ui); font-size: clamp(42px, 7vw, 72px); font-weight: 850; letter-spacing: -.055em; line-height: 1.04; margin-bottom: 20px; max-width: 760px; }
+.tagline { font-size: 18px; max-width: 650px; }
+.eyebrow { font-size: 11px; font-weight: 750; letter-spacing: .11em; text-transform: uppercase; color: #666; margin: 0 0 18px; }
+.calculator { margin-top: 42px; display: grid; grid-template-columns: 300px minmax(0,1fr); border: 1px solid #d1d1d1; border-radius: 12px; overflow: hidden; }
+.setup { padding: 26px; background: #fafafa; border-right: 1px solid #ddd; }
+.calculator h2 { font-size: 24px; line-height: 1.2; letter-spacing: -.04em; margin: 0 0 10px; }
+.help { font-size: 13px; color: #626262; line-height: 1.6; margin: 0 0 22px; }
+fieldset { border: 0; padding: 0; margin: 24px 0; min-width: 0; }
+legend, .field-label { display: block; font-size: 13px; font-weight: 750; margin-bottom: 10px; }
+.ratios { display: grid; grid-template-columns: repeat(4,1fr); gap: 7px; }
+.ratio { position: relative; }
+.ratio input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.ratio span { display: block; padding: 10px 0; text-align: center; font-size: 14px; font-weight: 700; background: white; border: 1px solid #ccc; border-radius: 7px; cursor: pointer; }
+.ratio input:checked + span { background: #000; color: white; border-color: #000; }
+.ratio input:focus-visible + span { outline: 2px solid #000; outline-offset: 3px; }
+.date-input { width: 100%; min-width: 0; background: white; color: black; border: 1px solid #bbb; padding: 12px; border-radius: 7px; font: inherit; font-size: 14px; margin-bottom: 18px; }
+button, input, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid black; outline-offset: 4px; }
+.calculate, .download-app { background: black; color: white; font: inherit; font-weight: 700; border: 1px solid black; border-radius: 8px; padding: 13px 18px; cursor: pointer; text-decoration: none; display: inline-block; }
+.calculate { width: 100%; }
+.calculate:hover, .download-app:hover { background: #303030; }
+.private-note { font-size: 12px; color: #626262; margin: 12px 0 0; }
+.results { padding: 26px; min-width: 0; }
+.result-heading { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.result-heading .eyebrow { white-space: nowrap; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; margin: 20px 0; padding: 15px 0; gap: 12px; }
+.stats strong { display: block; font-size: 28px; line-height: 1.2; letter-spacing: -.04em; }
+.stats span { font-size: 12px; color: #626262; }
+.trail { display: block; width: 100%; height: auto; margin: 22px 0 8px; }
+.legend { display: flex; gap: 20px; font-size: 12px; color: #555; flex-wrap: wrap; }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.key { display: inline-block; width: 10px; height: 10px; border: 1px solid #bbb; border-radius: 50%; background: white; }
+.key.mogul { background: black; border-color: black; }
+.phases { width: 100%; border-collapse: collapse; margin: 24px 0 12px; font-size: 13px; }
+.phases th { text-align: left; color: #666; font-size: 11px; font-weight: 600; padding: 10px 0; }
+.phases td { padding: 12px 0; border-top: 1px solid #e5e5e5; }
+.phases th:last-child, .phases td:last-child { text-align: right; }
+.phases td:nth-child(2) { font-weight: 750; }
+.small { font-size: 12px; color: #626262; }
+.calendar-section { border-top: 1px solid #ddd; padding-top: 22px; margin-top: 22px; }
+.calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; gap: 10px; }
+.calendar-header h3 { font-size: 15px; margin: 0; }
+.month-controls { display: flex; gap: 6px; }
+.month-controls button { background: white; border: 1px solid #ccc; border-radius: 6px; width: 38px; height: 38px; cursor: pointer; font-size: 18px; }
+.month-controls button:disabled { opacity: .3; cursor: default; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 5px; text-align: center; }
+.weekday { font-size: 10px; color: #666; padding: 5px 0; }
+.day { font-size: 12px; padding: 9px 0; border: 1px solid #ddd; border-radius: 5px; }
+.day.mogul { color: white; background: black; border-color: black; }
+.day.outside { border-color: transparent; color: #aaa; }
+.error { color: #9a2525; font-size: 13px; }
+.app-callout { margin-top: 30px; padding: 28px 0; border-bottom: 1px solid #ddd; display: flex; align-items: center; justify-content: space-between; gap: 25px; }
+.app-callout h2 { font-size: 23px; margin: 0 0 6px; letter-spacing: -.035em; }
+.app-callout p { margin: 0; color: #626262; font-size: 14px; max-width: 530px; }
+.download-app { white-space: nowrap; font-size: 14px; }
+.calculator-note { max-width: 740px; font-size: 13px; color: #626262; margin-top: 24px; }
+footer { padding-top: 36px; }
+[hidden] { display: none !important; }
+@media(max-width: 760px) {
+  .calculator { grid-template-columns: 1fr; }
+  .setup { border-right: 0; border-bottom: 1px solid #ddd; }
+  .setup, .results { padding: 22px; }
+  .app-callout { align-items: flex-start; flex-direction: column; }
+  .hero { padding-top: 30px; }
+}
+@media(prefers-reduced-motion: no-preference) { .ratio span, .calculate, .download-app { transition: background .15s, color .15s; } }
