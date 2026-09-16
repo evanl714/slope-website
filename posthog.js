@@ -1,6 +1,11 @@
 // PostHog analytics for getslope.app. Loaded on every page via <script src="/posthog.js" defer>.
 // Swap the key/host here once; every page picks it up.
 (function () {
+  // Safe wrapper for page scripts: no-op when analytics is off (unconfigured, localhost, DNT).
+  window.slopeTrack = function (name, props) {
+    try { if (window.posthog && window.posthog.capture) window.posthog.capture(name, props || {}); } catch (e) {}
+  };
+
   var POSTHOG_KEY = "phc_wZ4oBAF6GMfsBb9d3KWs4Tyaec4BZ9vxSLT6AsERbDUB"; // same project as the iOS app
   var POSTHOG_HOST = "https://us.i.posthog.com";
 
@@ -19,12 +24,38 @@
     persistence: "localStorage", // no cookies, consistent with the privacy policy
   });
 
-  // Outbound clicks to the App Store, so we can see calculator -> download conversion.
+  // Outbound clicks: App Store / TestFlight, and the contact email link.
   document.addEventListener("click", function (ev) {
     var a = ev.target && ev.target.closest && ev.target.closest("a[href]");
     if (!a) return;
+    var text = (a.textContent || "").trim().slice(0, 80);
     if (/apps\.apple\.com|testflight\.apple\.com/.test(a.href)) {
-      posthog.capture("app_store_click", { href: a.href, page: location.pathname, text: (a.textContent || "").trim().slice(0, 80) });
+      posthog.capture("app_store_click", { href: a.href, page: location.pathname, text: text });
+    } else if (/^mailto:/i.test(a.getAttribute("href") || "")) {
+      posthog.capture("contact_email_click", { page: location.pathname, text: text });
     }
   });
+
+  // blog_read: fired once when a reader scrolls past 60% of a blog post's <article>.
+  var article = document.querySelector("article");
+  var slugMatch = location.pathname.match(/^\/blog\/([^\/]+)\/?$/);
+  if (article && slugMatch) {
+    var fired = false, startedAt = Date.now();
+    var check = function () {
+      if (fired) return;
+      var rect = article.getBoundingClientRect();
+      var readPx = window.innerHeight - rect.top;          // how far into the article the viewport bottom is
+      if (readPx / rect.height >= 0.6 && Date.now() - startedAt >= 10000) { // 60% scrolled and 10s+ on page
+        fired = true;
+        window.removeEventListener("scroll", check);
+        posthog.capture("blog_read", {
+          slug: slugMatch[1],
+          title: document.title,
+          seconds_on_page: Math.round((Date.now() - startedAt) / 1000),
+        });
+      }
+    };
+    window.addEventListener("scroll", check, { passive: true });
+    setTimeout(check, 10000); // short posts that fit the viewport still count after 10s
+  }
 })();

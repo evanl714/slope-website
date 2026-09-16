@@ -15,6 +15,16 @@ const longFormat = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numer
 const format = (day, long = false) => (long ? longFormat : dateFormat).format(new Date(day * 86400000));
 let selectedRatio = defaultRatio, currentPlan, calendarMonth;
 
+// Analytics (no-op unless /posthog.js is active). Habit comes from the URL: /calculator/caffeine/ -> "caffeine".
+const habit = (location.pathname.match(/^\/calculator\/([^/]+)\/?$/) || [])[1] || 'general';
+const track = (name, props) => window.slopeTrack && window.slopeTrack(name, { habit, ...props });
+let userRan = false, planViewed = false;
+const resultsObserver = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+  if (!userRan || planViewed || !currentPlan || !entries.some(e => e.isIntersecting)) return;
+  planViewed = true;
+  track('calculator_plan_viewed', { total_days: currentPlan.target - currentPlan.start, phases: currentPlan.phases.length });
+}, { threshold: 0.4 }) : null;
+
 for (const value of presets) {
   const { off, mogul } = ratio(value);
   const label = document.createElement('label');
@@ -50,12 +60,18 @@ function render() {
   if (!Number.isInteger(total) || total < 14 || total > 365) {
     $('error').textContent = 'Choose valid dates with a completion date 14–365 days after your start date.';
     $('error').hidden = false;
+    if (userRan) track('calculator_run', { valid: false, total_days: Number.isFinite(total) ? total : null, ratio: selectedRatio });
     return;
   }
   $('error').hidden = true;
   const plan = generate(total, selectedRatio);
   currentPlan = { ...plan, start, target };
   const moguls = plan.days.filter(day => day.isMogul).length;
+  if (userRan) {
+    const { off, mogul } = ratio(selectedRatio);
+    track('calculator_run', { valid: true, total_days: total, ratio: selectedRatio, ratio_label: `${off}:${mogul}`, phases: plan.phases.length, off_days: total - moguls, mogul_days: moguls, start_date: startInput.value, target_date: targetInput.value });
+    planViewed = false;
+  }
   $('total-days').textContent = total;
   $('off-days').textContent = total - moguls;
   $('mogul-days').textContent = moguls;
@@ -122,7 +138,8 @@ function renderCalendar() {
 }
 $('previous-month').addEventListener('click', () => { calendarMonth = shiftMonth(calendarMonth, -1); renderCalendar(); });
 $('next-month').addEventListener('click', () => { calendarMonth = shiftMonth(calendarMonth, 1); renderCalendar(); });
-$('calculator-form').addEventListener('submit', event => { event.preventDefault(); render(); });
+$('calculator-form').addEventListener('submit', event => { event.preventDefault(); userRan = true; render(); });
+if (resultsObserver) resultsObserver.observe($('results'));
 const now = new Date();
 startInput.value = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 targetInput.value = dateString(dateNumber(startInput.value) + defaultDays);
