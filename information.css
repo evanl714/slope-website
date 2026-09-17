@@ -1,0 +1,16 @@
+/* Page-specific layouts using the shared blog typography and site chrome. */
+.intro { max-width: 650px; margin: 20px 0 0; font-size: 18px; line-height: 1.5; }
+.label { display: block; margin-bottom: 6px; color: #666; font-size: 11px; font-weight: 750; letter-spacing: .11em; text-transform: uppercase; }
+.privacy-page main { max-width: 760px; }
+.privacy-page .meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 760px; font-size: 14px; color: var(--ink-72); }
+.meta > div { min-width: 0; padding: 18px; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; overflow-wrap: anywhere; }
+.principle { max-width: 760px; margin: 22px 0 0; color: var(--ink); font-size: clamp(23px, 4vw, 30px); font-weight: 700; letter-spacing: -.035em; line-height: 1.25; }
+.summary-list { padding: 18px 18px 18px 38px; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; }
+.example { padding: 18px; border-left: 3px solid black; background: #fafafa; }
+.contact-page main { display: grid; grid-template-columns: minmax(0, 1fr) minmax(240px, 320px); gap: clamp(28px, 6vw, 56px); padding-top: 34px; }
+.contact-page section { padding: 0 0 28px; border: 0; }
+.contact-panel { align-self: start; padding: 24px; border: 1px solid #ddd; border-radius: 12px; background: #fafafa; }
+.email-link { display: inline-block; font-size: 20px; font-weight: 650; line-height: 1.25; overflow-wrap: anywhere; }
+@media (max-width: 680px) {
+  .contact-page main, .privacy-page .meta { grid-template-columns: 1fr; }
+}
