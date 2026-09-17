@@ -252,3 +252,7 @@ footer {
 table { width: 100%; border-collapse: collapse; font-size: 15px; }
 th { text-align: left; color: var(--ink-56); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; padding: 8px 12px 8px 0; border-bottom: 1px solid var(--ink-18); }
 td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--ink-08); color: var(--ink-72); vertical-align: top; }
+
+/* Images in posts */
+.article-figure { margin: 28px 0; }
+.article-figure img { display: block; width: 100%; height: auto; }
