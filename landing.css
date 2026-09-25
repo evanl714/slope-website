@@ -6,7 +6,7 @@
 .hero-copy > .small { margin-top: 18px; }
 .app-preview { margin: 0; width: 100%; max-width: 310px; justify-self: center; }
 .app-preview a, .screenshot-card a { display: block; border-radius: 14px; }
-.app-preview img, .screenshot-card img { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid #ddd; }
+.app-preview img, .app-preview video, .screenshot-card img { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid #ddd; }
 .screenshots-section { border-top: 1px solid #ddd; padding: 45px 0; }
 .screenshots-section h2 { font-size: clamp(27px, 4vw, 36px); line-height: 1.15; letter-spacing: -.045em; margin: 0 0 16px; }
 .gallery-help { color: #626262; font-size: 14px; margin: 0 0 24px; }
