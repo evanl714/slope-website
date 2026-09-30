@@ -1,5 +1,7 @@
 import { presets, ratio, generate, dateNumber, dateString } from './schedule.mjs';
 import { widget } from './widget.mjs';
+import { planFromHash, validatePlan } from './plan.mjs';
+import { mountEmailPlan } from './email-plan.mjs';
 
 // Mount the shared widget. Habit pages can suggest a starting point with
 // data-ratio and data-days on the #calculator element.
@@ -65,7 +67,7 @@ function render() {
   }
   $('error').hidden = true;
   const plan = generate(total, selectedRatio);
-  currentPlan = { ...plan, start, target };
+  currentPlan = { ...plan, start, target, initialOff: selectedRatio };
   const moguls = plan.days.filter(day => day.isMogul).length;
   if (userRan) {
     const { off, mogul } = ratio(selectedRatio);
@@ -143,4 +145,23 @@ if (resultsObserver) resultsObserver.observe($('results'));
 const now = new Date();
 startInput.value = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
 targetInput.value = dateString(dateNumber(startInput.value) + defaultDays);
+let invalidSavedPlan = false;
+if (location.hash.startsWith('#v=')) {
+  try {
+    const imported = planFromHash(location.hash);
+    startInput.value = imported.startDate;
+    targetInput.value = imported.targetDate;
+    selectedRatio = imported.initialOff;
+    document.querySelector(`input[name="ratio"][value="${selectedRatio}"]`).checked = true;
+  } catch {
+    invalidSavedPlan = true;
+  }
+}
 bounds(); describeRatio(); render();
+if (invalidSavedPlan) { $('error').textContent = 'This saved plan link is invalid. Choose a new starting point above.'; $('error').hidden = false; }
+mountEmailPlan(() => {
+  if (!currentPlan || dateNumber(startInput.value) !== currentPlan.start || dateNumber(targetInput.value) !== currentPlan.target || selectedRatio !== currentPlan.initialOff) {
+    throw new Error('Preview your updated slope before emailing it.');
+  }
+  return validatePlan({ version: 1, startDate: dateString(currentPlan.start), targetDate: dateString(currentPlan.target), initialOff: currentPlan.initialOff });
+});

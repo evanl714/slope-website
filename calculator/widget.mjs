@@ -17,7 +17,7 @@ export const widget = `
     <p class="help" id="timeline-help">Allow at least 14 days, just like in the app. Preview up to one year.</p>
     <button class="calculate" type="submit">Preview my slope ↗</button>
     <p class="error" id="error" role="alert" hidden></p>
-    <p class="private-note">Your dates and ratio stay in your browser.</p>
+    <p class="private-note">Calculations run in your browser. Emailing a plan is optional.</p>
   </form>
   <div class="results" id="results">
     <div class="result-heading"><h2>your trail map</h2><span class="eyebrow">daily taper</span></div>
