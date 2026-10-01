@@ -39,7 +39,7 @@
     const caption = links[current].closest('figure').querySelector('figcaption');
     document.getElementById('viewer-caption').textContent = caption
       ? [...caption.childNodes].map(node => node.textContent.trim()).filter(Boolean).join(' · ')
-      : 'Your daily trail';
+      : '';
     document.getElementById('viewer-count').textContent = `${current + 1} / ${links.length}`;
   }
   links.forEach((link, index) => {

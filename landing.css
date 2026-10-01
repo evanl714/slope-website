@@ -36,8 +36,6 @@
 #viewer-caption { font-size: 14px; text-align: center; margin: 0; max-width: 620px; }
 @media(max-width: 620px) { .viewer-stage { position: relative; padding-bottom: 54px; } #viewer-image { max-width: 100%; width: 100%; } #viewer-previous, #viewer-next { position: absolute; bottom: 0; } #viewer-previous { left: calc(50% - 54px); } #viewer-next { right: calc(50% - 54px); } }
 .screenshot-card { margin: 0; scroll-snap-align: start; }
-.screenshot-card figcaption { font-size: 14px; font-weight: 650; margin-top: 14px; }
-.screenshot-card small { display: block; font-size: 12px; font-weight: 400; color: #626262; margin-top: 4px; }
 .preview-top, .preview-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .preview-top strong { font-size: 25px; letter-spacing: -1px; }
 .preview-top span, .preview-bottom { font-size: 11px; color: #666; }
